@@ -1,0 +1,2 @@
+- I have already done C++ basics
+- The tut files exist just for revision purposes
