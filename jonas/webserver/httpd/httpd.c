@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 
   server_fd = server_init(atoi(port));
   if (!server_fd) {
-    fprintf(stderr, error);
+    fprintf(stderr, "%s", error);
     return -1;
   }
 

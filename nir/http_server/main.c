@@ -23,11 +23,11 @@
  * close
  */
 
-#define PORT 8080
-
 void check(int exp, const char *msg);
 
 int main(int argc, char *argv[]) {
+
+  const int PORT = atoi(argv[1]);
 
   int server_socket, client_socket;
 
@@ -63,14 +63,16 @@ int main(int argc, char *argv[]) {
 
   while (true) {
 
-    printf("Waiting for connections...");
+    printf("Waiting for connections...\n");
+    fflush(stdout);
 
     // accepts the connection coming from the clients
     check(client_socket = accept(server_socket, 0, 0), "Accept Failed!");
     // addr returns info about the client connecting but we dont need that so
     // NULL and the addr len is also set to NULL
 
-    printf("Connected Successfully!");
+    printf("Connected Successfully!\n");
+    fflush(stdout);
 
     // receive the string that the client is sending
     char buffer[256] = {0};
@@ -128,7 +130,7 @@ int main(int argc, char *argv[]) {
 
 void check(int exp, const char *msg) {
   if (exp == -1) {
-    fputs(msg, stderr);
+    fprintf(stderr, "%s", msg);
     exit(1);
   }
 }

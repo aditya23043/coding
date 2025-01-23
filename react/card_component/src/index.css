@@ -1,0 +1,33 @@
+html {
+  color: #ffffff;
+  background-color: #1e1e1e;
+  font-family: "Agave Nerd Font Mono";
+}
+
+.card {
+  box-shadow: -2px -2px 10px #ffffff11, 5px 5px 5px #00000044;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+  text-align: center;
+  display: inline-block;
+  max-width: 20%;
+}
+
+.card .card-img {
+  width: 60%;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px #000000;
+}
+
+.card-title {
+  overflow: hidden;
+  font-family: "Agave Nerd Font Mono";
+  text-shadow: 5px 5px 5px black;
+}
+
+.card-text {
+  opacity: 0.8;
+  line-height: 1.5;
+}
