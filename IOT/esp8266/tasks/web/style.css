@@ -1,0 +1,23 @@
+* {
+  font-family: "SF Mono";
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+input {
+  font-size: 1.5rem;
+  padding: 1.2rem;
+  margin: 1rem;
+}
+
+button {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+}

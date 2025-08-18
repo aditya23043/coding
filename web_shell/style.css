@@ -1,0 +1,27 @@
+* {
+  font-family: "Cascadia Code NF";
+  font-size: large;
+}
+html {
+  background-color: black;
+  color: #dadada;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  display: inline-flex;
+}
+input {
+  display: inline-flex;
+  padding: 0;
+  margin: 0;
+  background-color: grey;
+  font-size: small;
+  color: #dadada;
+  border: none;
+  border-left-width:;
+  outline: 0;
+}
+input:focus {
+  outline: none !important;
+}

@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #121212;
+  font-family: monospace;
+  color: #dadada;
+}
+
+.container {
+  background-color: #232323;
+  padding: 1rem;
+  border-radius: 0.4rem;
+}

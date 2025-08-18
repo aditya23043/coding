@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>HTMX Testing</title>
+  </head>
+  <script
+    src="https://unpkg.com/htmx.org@2.0.4"
+    integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+    crossorigin="anonymous"
+  ></script>
+  <body>
+    <div hx-target="this" hx-swap="outerHTML">
+      <div><label>First Name</label>: Aditya</div>
+      <div><label>Last Name</label>: Gautam</div>
+      <div><label>Email</label>: aditya23043@iiitd.ac.in</div>
+      <button hx-get="/contact/1/edit" class="btn primary">
+        Click To Edit
+      </button>
+    </div>
+  </body>
+</html>
