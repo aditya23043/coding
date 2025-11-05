@@ -1,0 +1,54 @@
+#include <Arduino.h>
+#include "EPD_3in5g.h"
+#include "GUI_Paint.h"
+// #include "fonts.h"
+#include <Fonts/FreeSansBold18pt7b.h>
+#include <Fonts/FreeSansBold9pt7b.h>
+#include <pgmspace.h>
+#include "AdafruitFontsHelper.cpp"
+
+void setup() {
+    printf("Simple 4-color image display with Adafruit GFX font\r\n");
+
+    DEV_Module_Init();
+    EPD_3IN5G_Init_Fast();
+
+    UWORD Imagesize = ((EPD_3IN5G_WIDTH % 4 == 0) ? 
+                        (EPD_3IN5G_WIDTH / 4) : 
+                        (EPD_3IN5G_WIDTH / 4 + 1)) * EPD_3IN5G_HEIGHT;
+
+    UBYTE *BlackImage = (UBYTE *)malloc(Imagesize);
+    if (!BlackImage) {
+        printf("Failed to allocate memory\r\n");
+        while (1);
+    }
+
+    Paint_NewImage(BlackImage, EPD_3IN5G_WIDTH, EPD_3IN5G_HEIGHT, 90, EPD_3IN5G_WHITE);
+    Paint_SetScale(4);
+    Paint_SelectImage(BlackImage);
+    Paint_Clear(EPD_3IN5G_WHITE);
+
+    // Paint_DrawString_EN(10, 10, "Built-in Font", &Font20, EPD_3IN5G_BLACK, EPD_3IN5G_WHITE);
+
+    const GFXfont *font = &FreeSansBold9pt7b;
+    const GFXfont *header_font = &FreeSansBold18pt7b;
+    drawStringToPaint(10, 35, "TASKS TO DO", header_font, EPD_3IN5G_RED);
+    drawStringToPaint(10, 70, "1. EVS Report (03/11/25)", font, EPD_3IN5G_BLACK);
+    drawStringToPaint(10, 95, "2. CMOS Class Quiz (04/11/25)", font, EPD_3IN5G_BLACK);
+    drawStringToPaint(10, 120, "3. DVD Project (10/11/25)", font, EPD_3IN5G_BLACK);
+    drawStringToPaint(10, 145, "4. VDF Assignment-4 (14/11/25)", font, EPD_3IN5G_BLACK);
+    drawStringToPaint(10, 170, "5. TCOM Assignments (12/11/25)", font, EPD_3IN5G_BLACK);
+
+    EPD_3IN5G_Display(BlackImage);
+
+    DEV_Delay_ms(2000);
+
+    EPD_3IN5G_Sleep();
+
+    free(BlackImage);
+    DEV_Module_Exit();
+}
+
+void loop()
+{
+}

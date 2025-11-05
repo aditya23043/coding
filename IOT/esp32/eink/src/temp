@@ -1,0 +1,53 @@
+#include <Arduino.h>
+#include "EPD_3in5g.h"
+#include "GUI_Paint.h"
+#include "fonts.h"
+#include "ImageData.c"
+
+void setup() {
+    printf("Simple 4-color image display\r\n");
+
+    // 1. Initialize hardware and display
+    DEV_Module_Init();
+    EPD_3IN5G_Init_Fast();  // fast init, no white clearing
+
+   UBYTE *BlackImage;
+   UWORD Imagesize = ((EPD_3IN5G_WIDTH % 4 == 0)? (EPD_3IN5G_WIDTH / 4 ): (EPD_3IN5G_WIDTH / 4 + 1)) * EPD_3IN5G_HEIGHT;
+   if((BlackImage = (UBYTE *)malloc(Imagesize)) == NULL) {
+       printf("Failed to apply for black memory...\r\n");
+       while(1);
+   }
+   printf("Paint_NewImage\r\n");
+   Paint_NewImage(BlackImage, EPD_3IN5G_WIDTH, EPD_3IN5G_HEIGHT, 90, EPD_3IN5G_WHITE);
+   Paint_SetScale(4);
+
+   Paint_SelectImage(BlackImage);
+   Paint_Clear(EPD_3IN5G_BLACK);
+
+    // 4. Draw text
+    Paint_DrawString_EN(10, 10, "1. EVS Project Report", &Font20, EPD_3IN5G_BLACK, EPD_3IN5G_WHITE);
+    Paint_DrawString_EN(10, 30, "2. VDF Assignment - 4", &Font20, EPD_3IN5G_BLACK, EPD_3IN5G_WHITE);
+    Paint_DrawString_EN(10, 50, "3. DVD Project Showcase", &Font20, EPD_3IN5G_BLACK, EPD_3IN5G_WHITE);
+    Paint_DrawString_EN(10, 70, "4. A-CMOS Assignment", &Font20, EPD_3IN5G_BLACK, EPD_3IN5G_WHITE);
+
+    // 5. Display the buffer
+    EPD_3IN5G_Display(BlackImage);
+
+   EPD_3IN5G_Display(gImage_4in2g);
+
+    // 3. Let it stabilize for a moment
+    DEV_Delay_ms(2000);
+
+    // 4. Put the display to sleep (to retain the image)
+    EPD_3IN5G_Sleep();
+
+    // 5. Optionally shut down the module to save power
+    DEV_Module_Exit();
+
+    free(BlackImage);
+}
+
+void loop()
+{
+
+}
