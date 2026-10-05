@@ -3,7 +3,6 @@
 
 #include "EPD_3in5g.h"
 #include "ImageData.h"
-#include "AdafruitFontsHelper.cpp"
 
 void setup()
 {
@@ -17,7 +16,6 @@ void setup()
     delay(2000);
 
     const GFXfont *font = &FreeMonoBold9pt7b;
-    drawStringToPaint(10, 10, "Lamborghini", font, EPD_3IN5G_WHITE);
 
     DEV_Module_Exit();
 }

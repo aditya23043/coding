@@ -1,11 +1,4 @@
-output.exe:
-	g++ -o output.exe main.cpp libs/glad.c -O3 -lglfw -lGL -lGLEW
+something: main.cpp
+	g++ -o output main.cpp -O3 -lGL -lglfw
 
-run:
-	./output.exe
-	rm output.exe
-
-nvim:
-	nvim main.cpp
-
-target: output.exe
+target: something
